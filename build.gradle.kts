@@ -28,7 +28,10 @@ dependencies {
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
 }
 
-
 val graphqlGenerateSDL by tasks.getting(com.expediagroup.graphql.plugin.gradle.tasks.GraphQLGenerateSDLTask::class) {
     packages.set(listOf("app.albe.graphql.types", "app.albe.graphql.queries"))
+}
+
+tasks.build {
+    dependsOn(graphqlGenerateSDL)
 }
